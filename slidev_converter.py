@@ -316,8 +316,9 @@ mdc: true
         # Get title from first slide or filename
         title = slides[0].title if slides else Path(pptx_path).stem
         
-        # Create output directory
-        output_path_obj = Path(output_dir)
+        # Create presentation-specific subdirectory
+        presentation_dir = self.sanitize_filename(title)
+        output_path_obj = Path(output_dir) / presentation_dir
         output_path_obj.mkdir(parents=True, exist_ok=True)
         
         # Save extracted images
@@ -353,14 +354,15 @@ mdc: true
         # Join everything
         full_content = "\n".join(slidev_content)
         
-        # Write to file
-        output_path = output_path_obj / f"{self.sanitize_filename(title)}.md"
+        # Write to file as slides.md (Slidev default)
+        output_path = output_path_obj / "slides.md"
         
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(full_content)
         
         print(f"✅ Slidev presentation created: {output_path}")
         print(f"📊 Converted {len(slides)} slides")
+        print(f"📁 Output directory: {output_path_obj}")
         return str(output_path)
     
     def sanitize_filename(self, title: str) -> str:
@@ -446,9 +448,9 @@ def main():
         print(f"✅ Demo conversion complete! File saved to: {result}")
     
     print("\n🚀 To view your presentation:")
-    print("1. cd", args.output)
+    print("1. cd [output-directory]/[presentation-name]/")
     print("2. npm install -g @slidev/cli")
-    print("3. slidev [presentation-name].md")
+    print("3. slidev")
 
 if __name__ == "__main__":
     main()
