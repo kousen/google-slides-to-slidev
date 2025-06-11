@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Output files (generated presentations)
+output/
+slidev-presentations/
+# Generated presentation files (but keep README.md and CLAUDE.md)
+output/*.md
+slidev-presentations/*.md
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Test files
+test_*.pptx
+*_test.pptx
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
