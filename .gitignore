@@ -46,8 +46,10 @@ ehthumbs.db
 Thumbs.db
 
 # Output files (generated presentations)
-output/
-slidev-presentations/
+output/*
+!output/.gitkeep
+slidev-presentations/*
+!slidev-presentations/.gitkeep
 # Generated presentation files (but keep README.md and CLAUDE.md)
 output/*.md
 slidev-presentations/*.md
