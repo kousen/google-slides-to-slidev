@@ -5,14 +5,16 @@ A Python script that converts PowerPoint (.pptx) files exported from Google Slid
 ## Features
 
 - ✅ **Converts PowerPoint slides to Slidev markdown**
-- ✅ **Extracts and preserves images** from slides
+- ✅ **Extracts and preserves images** from slides with proper sizing
 - ✅ **Maintains hierarchical bullet point structure**
-- ✅ **Handles multiword titles correctly**
-- ✅ **Escapes special characters** for Vue compatibility
+- ✅ **Handles multiword titles correctly** (fixes newline issues)
+- ✅ **Escapes special characters** for Vue compatibility (no more parsing errors)
 - ✅ **Professional Seriph theme** with custom styling
-- ✅ **Proper image sizing** for slide layouts
-- ✅ **Support for tables** (may need manual restoration)
-- ✅ **YouTube video integration** (requires manual setup)
+- ✅ **Clean bullet formatting** (no double bullets)
+- ✅ **Proper title slide placement** (no empty first slide)
+- ✅ **Support for tables** (manual restoration with custom CSS styling)
+- ✅ **YouTube video integration** (manual replacement with `<Youtube>` component)
+- ✅ **Reusable bio slides** (importable across presentations)
 
 ## Installation
 
@@ -90,6 +92,21 @@ slidev your-presentation-name.md
 ```
 
 Your presentation will open at `http://localhost:3030`
+
+## Reusable Bio Slides
+
+The project includes `ken-kousen-bio.md` as an example of creating reusable slides that can be imported into any presentation:
+
+```markdown
+---
+src: ./ken-kousen-bio.md
+---
+```
+
+This approach allows you to:
+- Maintain consistent contact information across presentations
+- Update book links and social media in one place
+- Create a library of reusable slide components
 
 ## Output Structure
 

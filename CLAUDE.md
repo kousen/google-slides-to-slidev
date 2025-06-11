@@ -8,8 +8,10 @@ This is a PowerPoint to Slidev converter that transforms .pptx files (exported f
 
 - `slidev_converter.py` - Main converter script
 - `README.md` - User documentation  
+- `CLAUDE.md` - Development context and architecture notes
+- `ken-kousen-bio.md` - Example reusable bio slide
 - `output/` - Generated Slidev presentations and extracted images
-- `Integrating AI in Java Projects.pptx` - Example input file
+- `Integrating AI in Java Projects.pptx` - Example input file (60 slides with various content types)
 
 ## Architecture & Design Decisions
 
@@ -122,13 +124,15 @@ content.append((level, text))  # Store as tuple
 - Good test case for edge cases and complex content
 
 ### Validation Checklist
-- [ ] Title displays correctly on first slide
-- [ ] Bullet hierarchies preserved  
-- [ ] Images extracted and sized properly
-- [ ] No Vue parsing errors
-- [ ] Theme applies correctly
-- [ ] Tables render (if manually added)
-- [ ] YouTube videos work (if manually replaced)
+- [x] Title displays correctly on first slide
+- [x] Bullet hierarchies preserved  
+- [x] Images extracted and sized properly
+- [x] No Vue parsing errors
+- [x] Theme applies correctly
+- [x] Tables render (with manual recreation and CSS styling)
+- [x] YouTube videos work (with manual replacement using `<Youtube>` component)
+- [x] Contact slide layout works with clickable links
+- [x] Reusable bio slide can be imported
 
 ## Future Enhancements
 
@@ -151,8 +155,10 @@ content.append((level, text))  # Store as tuple
 1. **Theme changes**: Modify `generate_frontmatter()` function
 2. **Image sizing**: Adjust CSS in `convert_slide_to_markdown()`
 3. **Background images**: Change URL in frontmatter generation
-4. **Table formatting**: Add custom CSS styling
-5. **YouTube integration**: Replace images with `<Youtube>` components
+4. **Table formatting**: Add custom CSS styling (see "Categories of AI Models" example)
+5. **YouTube integration**: Replace images with `<Youtube>` components (see slide 60 example)
+6. **Contact slide improvements**: Update layout, add/remove links, modify formatting
+7. **Reusable slides**: Create importable `.md` files for common content
 
 ### Debugging Tips
 - Check for Vue parsing errors in browser console
