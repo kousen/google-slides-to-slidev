@@ -36,6 +36,9 @@ env/
 *.swo
 *~
 
+# Claude Code
+.claude/
+
 # OS
 .DS_Store
 .DS_Store?
