@@ -61,9 +61,10 @@ slidev-presentations/*.md
 *.jpeg
 *.gif
 
-# Test files
+# Test files and example presentations
 test_*.pptx
 *_test.pptx
+*.pptx
 
 # Logs
 *.log
