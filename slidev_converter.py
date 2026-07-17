@@ -33,8 +33,9 @@ class SlideContent:
             self.images = []
 
 class SlidevConverter:
-    def __init__(self):
+    def __init__(self, include_notes: bool = True):
         self.slides: List[SlideContent] = []
+        self.include_notes = include_notes
         
     def extract_from_powerpoint(self, pptx_path: str) -> List[SlideContent]:
         """Extract content from PowerPoint file"""
@@ -212,6 +213,21 @@ title: {safe_title}
 mdc: true
 ---"""
 
+    def format_speaker_notes(self, notes: str) -> str:
+        """Format speaker notes for Slidev presenter mode."""
+        if not self.include_notes or not notes:
+            return ""
+
+        safe_notes = notes.strip().replace("-->", "--&gt;")
+        if not safe_notes:
+            return ""
+
+        return f"""
+<!--
+{safe_notes}
+-->
+"""
+
     def convert_slide_to_markdown(self, slide: SlideContent) -> str:
         """Convert a slide to Slidev markdown format"""
         if slide.slide_type == "title":
@@ -223,7 +239,7 @@ mdc: true
     Press Space for next page <carbon:arrow-right class="inline"/>
   </span>
 </div>
-"""
+{self.format_speaker_notes(slide.notes)}"""
         
         elif slide.slide_type == "section":
             # Convert bullet points to v-clicks for animations
@@ -253,7 +269,7 @@ mdc: true
 # {slide.title}
 
 {content_md}{image_md}
-"""
+{self.format_speaker_notes(slide.notes)}"""
         
         else:  # default bullets
             content_md = "\n<v-clicks>\n\n"
@@ -280,7 +296,7 @@ mdc: true
 # {slide.title}
 
 {content_md}{image_md}
-"""
+{self.format_speaker_notes(slide.notes)}"""
 
     def add_closing_slide(self, author: str = "Kenneth Kousen") -> str:
         """Generate a closing thank you slide"""
@@ -374,8 +390,8 @@ mdc: true
 
 # MCP Integration Class
 class MCPSlidevConverter:
-    def __init__(self):
-        self.converter = SlidevConverter()
+    def __init__(self, include_notes: bool = True):
+        self.converter = SlidevConverter(include_notes=include_notes)
     
     def convert_from_powerpoint(self, pptx_path: str, 
                               output_dir: str = "./slidev-presentations") -> str:
@@ -411,10 +427,15 @@ def main():
     parser.add_argument("--pptx", help="PowerPoint file to convert")
     parser.add_argument("--batch", help="Directory containing PowerPoint files")
     parser.add_argument("--output", default="./slidev-presentations", help="Output directory")
+    parser.add_argument(
+        "--no-notes",
+        action="store_true",
+        help="Exclude speaker notes from the generated Slidev markdown",
+    )
     
     args = parser.parse_args()
     
-    converter = MCPSlidevConverter()
+    converter = MCPSlidevConverter(include_notes=not args.no_notes)
     
     if args.pptx:
         # Convert single PowerPoint file
