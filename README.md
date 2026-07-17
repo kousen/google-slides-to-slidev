@@ -6,6 +6,7 @@ A Python script that converts PowerPoint (.pptx) files exported from Google Slid
 
 - ✅ **Converts PowerPoint slides to Slidev markdown**
 - ✅ **Extracts and preserves images** from slides with proper sizing
+- ✅ **Preserves speaker notes** for Slidev presenter mode
 - ✅ **Maintains hierarchical bullet point structure**
 - ✅ **Handles multiword titles correctly** (fixes newline issues)
 - ✅ **Escapes special characters** for Vue compatibility (no more parsing errors)
@@ -47,6 +48,7 @@ python slidev_converter.py --pptx "your-presentation.pptx" --output ./output
 - `--pptx`: Path to the PowerPoint file to convert (required)
 - `--batch`: Directory containing multiple PowerPoint files for batch conversion
 - `--output`: Output directory (default: `./slidev-presentations`)
+- `--no-notes`: Exclude speaker notes from the generated Slidev markdown
 
 ### Examples
 
